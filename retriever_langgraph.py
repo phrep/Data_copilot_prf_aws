@@ -1,10 +1,7 @@
 from typing import TypedDict
-
 from indexando_dados_qdrant_local import banco_qdrant
-
 from langchain_groq.chat_models import ChatGroq
 from langchain_core.messages import SystemMessage, HumanMessage
-
 from langgraph.graph import StateGraph, START, END
 
 
@@ -16,7 +13,7 @@ class MeuEstado(TypedDict):
 
 
 def retriever_no(state: MeuEstado):
-    db = banco_qdrant("meus_documentos")
+    db = banco_qdrant("databot_collections")
     meu_retriever = db.as_retriever()
     documentos_retornados = meu_retriever.invoke(state["entrada_usuario"])
     return {"documentos": documentos_retornados}
@@ -61,14 +58,15 @@ graph.add_edge("chatbot", END)
 app = graph.compile()
 
 ## Invocando o grafo:
-resp = app.invoke({"entrada_usuario": "Recebi uma cobrança indevida. O que devo fazer?"})
+resp = app.invoke({"entrada_usuario": "QUais tipos de software a databot tem ? e o que ele faz ?"})
 
 print(resp["resposta"])
 
-# # Imprimindo a Imagem do Grafo:
-# import io
-# from PIL import Image
-# img_bytes = app.get_graph(xray=1).draw_mermaid_png()
-# img = Image.open(io.BytesIO(img_bytes))
-# img.save('diagrama_workflow_game.png')
-# img.show()
+#Imprimindo a Imagem do Grafo:
+import io
+from PIL import Image
+
+img_bytes = app.get_graph(xray=1).draw_mermaid_png()
+img = Image.open(io.BytesIO(img_bytes))
+img.save('diagrama_workflow_game.png')
+img.show()
