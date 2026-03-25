@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # 🔥 IMPORTANTE: importar do seu loader
-from loader import criar_documentos_schema
+from core.rag.loader import criar_documentos_schema
+
 
 
 # =========================
@@ -25,7 +26,7 @@ def indexar_documentos(nome_colecao: str, docs: list):
     QdrantVectorStore.from_documents(
         documents=docs,
         embedding=get_embedding(),
-        url="http://localhost:6333",
+        url="http://13.222.175.92:6333",
         collection_name=nome_colecao,
     )
 
@@ -37,7 +38,7 @@ def banco_qdrant(nome_colecao: str):
 
     db = QdrantVectorStore.from_existing_collection(
         collection_name=nome_colecao,
-        url="http://localhost:6333",
+        url="http://13.222.175.92:6333",
         embedding=get_embedding(),
     )
 

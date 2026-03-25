@@ -12,7 +12,7 @@ from langchain_core.runnables import RunnableParallel
 from langchain_core.output_parsers import StrOutputParser
 
 from indexador import banco_qdrant
-from connection import conn
+from infrastructure.database.connection import conn
 
 
 # =========================
