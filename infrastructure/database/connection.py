@@ -13,12 +13,3 @@ conn = connect(
     s3_staging_dir=os.getenv("S3_STAGING_DIR")
 )
 
-# query = """
-# SELECT *
-# FROM "2025_geral_db"."ano_2025"
-# LIMIT 10;
-# """
-
-# df = pd.read_sql(query, conn)
-
-# print(df)

@@ -12,7 +12,7 @@
 # RAG com Qdrant Local
 
 Projeto de RAG usando:
-- Qdrant (vector database local)
+- Qdrant (vector database, utilizando nome de colunas de tabelas SQL no athena e descrições )
 - LangChain
 - Embeddings gratuitos (HuggingFace)
 - PDFs como fonte de dados
@@ -20,7 +20,7 @@ Projeto de RAG usando:
 ## Setup
 
 ```bash
-git clone https://github.com/phrep/rag_qdrant.git
+git clone https://github.com/phrep/Data_copilot_prf_aws
 cd rag_qdrant
 python -m venv venv
 venv\Scripts\activate

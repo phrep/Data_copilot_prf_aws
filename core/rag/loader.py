@@ -18,8 +18,16 @@ Tabela contendo registros de acidentes em rodovias federais do Brasil.
 Use esta tabela para análises de:
 - quantidade de acidentes
 - análises por estado (uf)
+- análises por estado (uf)
+- análises por cidades
 - análises temporais (ano, mês, dia)
 - causas e tipos de acidentes
+- Condição climática
+- Tipo de veículo
+- Sexo da pessoa
+- Idade da pessoa
+- Latitude e longitude
+
 """,
         metadata={"type": "table_context"}
     ))
@@ -92,13 +100,13 @@ Priorizar:
 - filtro por uf
 
 Exemplo:
-WHERE ano = 2023 AND uf = 'SP'
+WHERE ano = 2025 AND uf = 'SP'
 """,
         metadata={"type": "rule"}
     ))
 
     # =========================
-    # EXEMPLOS DE SQL (🔥 MUITO IMPORTANTE)
+    # EXEMPLOS DE SQL 
     # =========================
     documentos.append(Document(
         page_content=f"""

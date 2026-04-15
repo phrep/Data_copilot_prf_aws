@@ -43,9 +43,11 @@ with st.sidebar:
     st.markdown("### 💡 Exemplos de perguntas")
 
     st.markdown("""
-    - Top 10 causas de acidentes em 2025 em SP  
-    - Quantos acidentes ocorreram por mês em 2024  
-    - Acidentes por tipo em São José dos Campos  
+    - Ranking 10 causas de acidentes em SP decrescente 
+    - Ranking top 10 estados com mais acidentes por ano
+    - top 10 km com maior indice de acidentes em sao jose dos campos ?            
+    - Quantos acidentes ocorreram por mês em 2025  
+    - Quantidade de acidentes por tipo de acidente em São José dos Campos  
     - Total de mortes por estado  
     """)
 
@@ -86,6 +88,20 @@ if pergunta:
             # =========================
             # GRÁFICO AUTOMÁTICO
             # =========================
+            # if mostrar_grafico and not df.empty:
+
+            #     colunas_numericas = df.select_dtypes(include=['int64', 'float64']).columns
+            #     colunas_categoricas = df.select_dtypes(include=['object']).columns
+
+            #     if len(colunas_numericas) > 0 and len(colunas_categoricas) > 0:
+
+            #         st.markdown("### 📈 Visualização")
+
+            #         try:
+            #             df_plot = df.set_index(colunas_categoricas[0])
+            #             st.bar_chart(df_plot[colunas_numericas[0]])
+            #         except:
+            #             st.info("Não foi possível gerar gráfico automaticamente.")
             if mostrar_grafico and not df.empty:
 
                 colunas_numericas = df.select_dtypes(include=['int64', 'float64']).columns
@@ -96,10 +112,25 @@ if pergunta:
                     st.markdown("### 📈 Visualização")
 
                     try:
+                        # Define índice pela primeira coluna categórica
                         df_plot = df.set_index(colunas_categoricas[0])
-                        st.bar_chart(df_plot[colunas_numericas[0]])
-                    except:
+
+                        # Seleciona a primeira coluna numérica
+                        serie_plot = df_plot[colunas_numericas[0]]
+
+                        # Ordena em ordem decrescente
+                        serie_plot = serie_plot.sort_values(ascending=False)
+
+                        # Limita aos 10 maiores valores
+                        serie_plot = serie_plot.head(10)
+
+                        # Exibe gráfico
+                        st.bar_chart(serie_plot)
+
+                    except Exception as e:
                         st.info("Não foi possível gerar gráfico automaticamente.")
+
+
 
             # =========================
             # MAPA AUTOMÁTICO

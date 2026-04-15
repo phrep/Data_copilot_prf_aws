@@ -1,12 +1,8 @@
 from langchain_qdrant import QdrantVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
-
 from dotenv import load_dotenv
-load_dotenv()
-
-# 🔥 IMPORTANTE: importar do seu loader
 from core.rag.loader import criar_documentos_schema
-
+load_dotenv()
 
 
 # =========================
@@ -50,7 +46,7 @@ def banco_qdrant(nome_colecao: str):
 # =========================
 if __name__ == '__main__':
 
-    # 🔥 agora vem do loader
+    # loader
     documentos = criar_documentos_schema()
 
     indexar_documentos("prf_acidentes_schema", documentos)
